@@ -1,0 +1,13 @@
+;; This config was generated using ensime-config-gen. Feel free to customize its contents manually. 
+
+(
+
+:project-name "noboxing-plugin"
+
+:server-root "/Users/dragos/emacs/ensime/"
+
+:project-package "ssol.tools.noboxing"
+
+:use-sbt t
+
+)

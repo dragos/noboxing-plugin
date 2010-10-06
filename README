@@ -1,0 +1,49 @@
+Noboxing Scala Compiler plugin
+==============================
+
+This compiler plugin issues warnings when the scalac compiler adds a
+box or unbox operation in a @noboxing annotated definition. It
+requires scala 2.8.0.
+
+Build
+=====
+
+Use "sbt package".
+
+Run
+===
+
+You can instruct scalac to pick up your plugin using
+-Xplugin:path/to/jar, or you can copy the plugin jar to
+$SCALA_HOME/misc/scala-devel/plugins.
+
+From the project root, type
+$ scalac -Xplugin:target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar -Xplugin-list
+
+You should see:
+
+noboxing - checks for boxing operations
+continuations - applies selective cps conversion
+
+Use
+===
+
+In your source code, import ssol.tools.noboxing.noboxing and annotate
+a class or definition:
+
+import ssol.tools.noboxing.noboxing
+
+class Test {
+  def hello(x: String) {
+    println("Hello, " + x)
+  }
+
+  @noboxing
+  def arith(x: List[Int]) = x(0) + x(1)
+}
+
+Then run scalac with your plugin
+$ scalac -Xplugin:target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar -cp \
+    target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar test.scala
+
+Don't forget to add the jar to your compilation classpath as well.

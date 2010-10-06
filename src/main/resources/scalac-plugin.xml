@@ -1,0 +1,4 @@
+<plugin>
+  <name>noboxing</name>
+  <classname>ssol.tools.noboxing.WarnBoxingPlugin</classname> 
+</plugin>
