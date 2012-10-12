@@ -9,7 +9,7 @@ object Build extends sbt.Build {
     project(id = "noboxing",
             base = file("."),
             settings = Seq(
-              initialCommands := "", //import com.novus.pricing._; import org.joda.time.DateTime",
+              initialCommands := "",
               scalaVersion := "2.9.2",
               scalacOptions := Seq("-deprecation", "-unchecked"),
               shellPrompt := { (state: State) => "[%s]$ " format(Project.extract(state).currentProject.id) },
