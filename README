@@ -3,7 +3,7 @@ Noboxing Scala Compiler plugin
 
 This compiler plugin issues warnings when the scalac compiler adds a
 box or unbox operation in a @noboxing annotated definition. It
-requires scala 2.8.0.
+requires scala 2.9.2.
 
 Build
 =====
@@ -17,8 +17,15 @@ You can instruct scalac to pick up your plugin using
 -Xplugin:path/to/jar, or you can copy the plugin jar to
 $SCALA_HOME/misc/scala-devel/plugins.
 
+Alternatively, if you are using SBT, you can drop the jar
+in your /lib directory, and add the following to your scalac
+options, like so:
+
+    scalacOptions := Seq(..., "-Xplugin:lib/noboxing_2.9.2-0.1-SNAPSHOT.jar")
+
 From the project root, type
-$ scalac -Xplugin:target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar -Xplugin-list
+
+$ scalac -Xplugin:target/scala-2.9.2/noboxing_2.9.2-0.1-SNAPSHOT.jar -Xplugin-list
 
 You should see:
 
@@ -29,7 +36,7 @@ Use
 ===
 
 In your source code, import ssol.tools.noboxing.noboxing and annotate
-a class or definition:
+a class or definition.  For example:
 
 import ssol.tools.noboxing.noboxing
 
@@ -43,7 +50,20 @@ class Test {
 }
 
 Then run scalac with your plugin
-$ scalac -Xplugin:target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar -cp \
-    target/scala_2.8.0/noboxing-plugin_2.8.0-1.0.jar test.scala
+
+$ scalac -Xplugin:target/scala_2.9.2/noboxing-plugin_2.9.2-0.1.jar -cp \
+    target/scala_2.9.2/noboxing-plugin_2.9.2-0.1.jar test.scala
 
 Don't forget to add the jar to your compilation classpath as well.
+
+Credits
+=======
+
+Written originally for Scala 2.8.0 by:
+
+    Iulian Dragos (https://github.com/dragos)
+
+updated to Scala 2.9.2 by:
+
+    Adam Klein (https://github.com/adamklein)
+
